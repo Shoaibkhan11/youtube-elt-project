@@ -101,7 +101,7 @@ def extract_video_data(video_id_list):
 
 @task
 def save_to_json(extracted_data):
-    file_path=f'./data/YT_data_{channel_handle}_{datetime.now().strftime("%Y-%m-%d_%H-%M-%S")}.json'
+    file_path=f'./data/YT_data_{channel_handle}_{datetime.now().strftime("%Y-%m-%d")}.json'
     with open(file_path,'w',encoding='utf-8') as file_to_write:
         json.dump(extracted_data,file_to_write,indent=4,ensure_ascii=False)
 
