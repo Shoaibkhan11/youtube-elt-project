@@ -7,7 +7,7 @@ from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from datawarehouse.dwh import staging_table,core_table
 from dataquality.soda import yt_elt_data_quality
 
-from airflow.operators.python import PythonOperator
+
 
 #define local timezone
 local_tz=pendulum.timezone("Asia/Kolkata")
@@ -16,9 +16,9 @@ local_tz=pendulum.timezone("Asia/Kolkata")
 
 default_args={
     "owner":"shoaib",
-    "depends_on_past":"False",
-    "email_on_failure":"False",
-    "email_on_retry":"False",
+    "depends_on_past":False,
+    "email_on_failure":False,
+    "email_on_retry":False,
     "email":"shoaibkhan11374@gmail.com",
     "max_active_runs":1,
     "dagrun_timeout":timedelta(hours=1),
