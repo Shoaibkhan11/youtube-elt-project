@@ -130,89 +130,42 @@ This ensures reliable and trustworthy warehouse data.
 ```bash
 project-root/
 │
-├── dags/                     # Airflow DAG definitions
-│   ├── extract_transform.py
-│   ├── update_warehouse.py
-│   └── soda_tests.py
+├── dags/ main.py                   # Airflow DAG definitions
+│   
 │
-├── api/                      # YouTube API logic
+├── dags/api/                       # YouTube API logic and Data transformation scripts
 │
-├── transformations/          # Data transformation scripts
 │
-├── warehouse/                # PostgreSQL warehouse logic
+├── dags/datawarehouse/             # PostgreSQL warehouse logic
 │
-├── soda/                     # Soda validation files
+├── dags/dataquality                # Soda validation files
 │
-├── data/                     # Generated JSON files
+├── data/                           # Generated JSON files
 │
-├── docker-compose.yml        # Docker services
-├── Dockerfile                # Docker setup
+├── docker-compose.yml              # Docker services
+├── Dockerfile                      # Docker setup
 ├── requirements.txt
 │
-└── .github/workflows/        # Custom CI/CD workflows
+└── .github/workflows/              # Custom CI/CD workflows
 ```
 
----
 
-## 🚀 Getting Started
-
-### 1. Clone Repository
-
-```bash
-git clone <your-repository-url>
-cd <project-name>
-```
-
-### 2. Create Environment Variables
-
-Create a `.env` file:
-
-```env
-YOUTUBE_API_KEY=your_api_key
-
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=password
-POSTGRES_DB=youtube_dwh
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-```
-
-### 3. Run Using Docker
-
-Build and start all services:
-
-```bash
-docker-compose up --build
-```
-
-This starts:
-
-* Apache Airflow
-* PostgreSQL Database
-* Supporting services
-
----
-
-### 4. Access Airflow UI
-
-Open in browser:
-
-```text
-http://localhost:8080
-```
-
-Configure login credentials based on your Docker setup.
-
----
 
 ## 🔁 DAG Dependency Flow
 
 ```text
-DAG 1 (Extract & Transform)
+DAG 1 (produce_json)
+<img width="936" height="186" alt="image" src="https://github.com/user-attachments/assets/7588da7e-d390-4068-9b95-5f8fa61ddf67" />
+
             ↓
-DAG 2 (Update Data Warehouse)
+DAG 2 (update_db)
+<img width="977" height="222" alt="image" src="https://github.com/user-attachments/assets/40cb5ff9-ddc2-43c4-8469-f5b4252c52d0" />
+
             ↓
-DAG 3 (Soda Data Quality Tests)
+DAG 3 (data_quality)
+<img width="637" height="156" alt="image" src="https://github.com/user-attachments/assets/494e7fae-42e6-4e42-bd2f-0cbe6e27d460" />
+
+
 ```
 
 Each DAG depends on successful completion of the previous DAG to maintain data integrity.
