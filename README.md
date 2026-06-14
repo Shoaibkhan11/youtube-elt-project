@@ -153,7 +153,7 @@ project-root/
 
 ## 🔁 DAG Dependency Flow
 
-```text
+
 DAG 1 (produce_json)
 <img width="936" height="186" alt="image" src="https://github.com/user-attachments/assets/7588da7e-d390-4068-9b95-5f8fa61ddf67" />
 
@@ -163,10 +163,10 @@ DAG 2 (update_db)
 
             ↓
 DAG 3 (data_quality)
+
 <img width="637" height="156" alt="image" src="https://github.com/user-attachments/assets/494e7fae-42e6-4e42-bd2f-0cbe6e27d460" />
 
 
-```
 
 Each DAG depends on successful completion of the previous DAG to maintain data integrity.
 
